@@ -17,11 +17,6 @@ import Combine
 
 class allowanceDetails: ObservableObject {
     
-    //Child Details
-    @Published var childFirstName = ""
-    @Published var childLastName = ""
-    @Published var childAge = ""
-    
     //Allowance Period Indicator
     @Published var allowanceWkly = ""
     @Published var allowanceMthly = ""

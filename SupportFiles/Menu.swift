@@ -17,6 +17,9 @@ struct Menu: View {
     @State var showMenuYearly = false
     
     
+    @ObservedObject var personalDetails = allowanceDetails()
+    @State private var activatedLink = false
+    
     
     var body: some View {
         
@@ -27,13 +30,27 @@ struct Menu: View {
             
             if showMenuWeekly {
                 HStack {
-                    menuIcons(icon: "sterlingsign.circle.fill")
+                  
+                  
+                    //Button Action
+                    Button(action: {
+                        self.personalDetails.allowanceWkly = "Weekly"
+                        self.activatedLink = true
+                        
+                    }) {
+                    
+                        menuIcons(icon: "sterlingsign.circle.fill")
                         .foregroundColor(Color.green)
+                        
+                        Text("Week")
+                            .font(.system(size: 14))
+                            .foregroundColor(.green)
+                        }
                     
-                    
-                Text("Week")
-                    .font(.system(size: 14))
-                    .foregroundColor(.green)
+                        //Navigation Link
+                    NavigationLink(destination: kidAllowance(updateWklyAllowance: $personalDetails.allowanceWkly), isActive: $activatedLink) {
+                        EmptyView()
+                    }
                 }
             } //End of Weekly
             
@@ -153,5 +170,42 @@ struct menuIcons: View {
                 .shadow(color: .gray, radius: 0.3, x: 1, y: 1)
         
         }
+    }
+}
+
+struct kidAllowance: View {
+    
+    //Access to Observable Personal Details
+    @ObservedObject var personalDetails = allowanceDetails()
+    
+    
+    //Published Bindings - Period
+    @Binding var updateWklyAllowance: String
+    //@Binding var updateMthlyAllowance: String
+    //@Binding var updateYrlyAllowance: String
+    
+    @State private var firstName = ""
+    @State private var lastName = ""
+    
+    
+    
+    
+    var body: some View {
+        
+        
+        VStack {
+            TextField("Enter your firstname",text: $firstName)
+            TextField("Enter your lastname",text: $lastName)
+         
+                
+            
+            
+            Text("You name is \(firstName) \(lastName)")
+            Text("This is a \(updateWklyAllowance) allowance")
+            
+        }
+        .font(.system(size: 14))
+        .autocapitalization(.words)
+        .padding()
     }
 }

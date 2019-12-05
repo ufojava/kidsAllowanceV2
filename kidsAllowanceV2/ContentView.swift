@@ -42,10 +42,8 @@ struct ContentView: View {
                     .padding(.horizontal, 280)
                     
                     
-                }
+                }//VStack Ends
                     
-            
-             
                 VStack {
                     //Call Menu
                     Menu()
@@ -62,6 +60,9 @@ struct ContentView: View {
         
         
     }
+
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

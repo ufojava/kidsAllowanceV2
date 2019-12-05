@@ -28,9 +28,10 @@ struct Menu: View {
             if showMenuWeekly {
                 HStack {
                     menuIcons(icon: "sterlingsign.circle.fill")
+                        .foregroundColor(Color.green)
                     
                     
-                Text("Weekly")
+                Text("Week")
                     .font(.system(size: 14))
                     .foregroundColor(.green)
                 }
@@ -39,8 +40,9 @@ struct Menu: View {
             if showMenuMonthly {
                 HStack {
                     menuIcons(icon: "sterlingsign.circle.fill")
+                        .foregroundColor(Color.blue)
                     
-                    Text("Monthly")
+                    Text("Month")
                         .font(.system(size: 14))
                         .foregroundColor(.blue)
                 }
@@ -51,7 +53,7 @@ struct Menu: View {
                 HStack {
                     menuIcons(icon: "sterlingsign.circle.fill")
                         
-                Text("Yearly")
+                Text("Year")
                     .font(.system(size: 14))
                     .foregroundColor(.black)
                 }
@@ -75,6 +77,7 @@ struct Menu: View {
                     .shadow(color: .gray, radius: 0.3, x: 1, y: 1)
                 
             Text("Menu")
+                .foregroundColor(Color.red)
                 
                 }.padding()
         
@@ -96,7 +99,7 @@ struct Menu: View {
         } //End Weekly
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             
             withAnimation {
                 self.showMenuMonthly.toggle()
@@ -104,7 +107,7 @@ struct Menu: View {
         } //End Monthly
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             
             withAnimation {
                 
@@ -147,7 +150,6 @@ struct menuIcons: View {
             Image(systemName: icon)
                 .resizable()
                 .frame(width: 55, height: 55)
-                .foregroundColor(Color.blue)
                 .shadow(color: .gray, radius: 0.3, x: 1, y: 1)
         
         }

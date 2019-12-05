@@ -15,34 +15,28 @@ struct ContentView: View {
         
         NavigationView {
         
-            
-       
-            
-        
-        
+              
             ZStack(alignment: .trailing) {
             
     
                 Image("Other_VCBackground")
                     .resizable()
                     .scaledToFill()
+                    .border(Color.black, width: 2)
+                    
             
              
                 VStack {
-                //Call Menu
+                    //Call Menu
                     Menu()
+                    
+                    } //Menu ZStack Ends
+                    .padding(.horizontal, 110)
                 
-                }.padding(.horizontal, 250) //Menu ZStack Ends
-            
-            
             } //End ZStack Image
-            .edgesIgnoringSafeArea(.all)
-        
-        
     
-        
-        
-        .navigationBarTitle(Text("Home 🏠"))
+                
+            .navigationBarTitle(Text("Home 🏠"))
         
         } //End Navigation End
         

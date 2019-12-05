@@ -75,8 +75,9 @@ struct Menu: View {
                     .shadow(color: .gray, radius: 0.3, x: 1, y: 1)
                 
             Text("Menu")
-            }.transition(.move(edge: .trailing))
-            
+                
+                }.padding()
+        
             } //End of Button
             
         }

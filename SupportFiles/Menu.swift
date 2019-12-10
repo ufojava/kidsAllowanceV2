@@ -109,10 +109,11 @@ struct Menu: View {
                     }) {
                         
                         menuIcons(icon: "sterlingsign.circle.fill")
+                            .foregroundColor(Color.black)
                                 
                         Text("Year")
                             .font(.system(size: 14))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.black)
                         
                         
                     }
@@ -148,7 +149,7 @@ struct Menu: View {
                     .shadow(color: .gray, radius: 0.3, x: 1, y: 1)
                 
             Text("Menu")
-                .foregroundColor(Color.red)
+                .foregroundColor(Color.black)
                 
                 }.padding()
         

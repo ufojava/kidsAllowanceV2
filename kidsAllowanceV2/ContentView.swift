@@ -15,48 +15,79 @@ struct ContentView: View {
         
         NavigationView {
         
-              
-            ZStack(alignment: .trailing) {
             
+      
+              
+            ZStack(alignment: .top) {
+                
+                
+                
     
                 Image("Other_VCBackground")
                     .resizable()
                     .scaledToFill()
                     .border(Color.black, width: 2)
+                    .padding(.vertical, -150)
+                    
+                    
+         
+                     
+            
                 
-             
-                
-                VStack(alignment: .center) {
-                    Text("Allowance")
-                        .font(.headline)
+                ZStack {
                     
-                Image("kidsAllowanceChat")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .scaledToFit()
-                    .border(Color.gray, width: 6)
-                    .cornerRadius(12)
-                   
-                    .shadow(radius: 0.3)
-                    Spacer().frame(height: 200)
-                    .padding(.horizontal, 280)
+                  
+                Rectangle()
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(Color.blue)
+                    .overlay(Rectangle().stroke(Color.black,lineWidth: 4))
+    
                     
+                    Capsule()
+                        .frame(width: 200, height: 30)
+                        .foregroundColor(Color.red)
+                        .overlay(Capsule().stroke(Color.black,lineWidth: 4))
+                    Circle()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(Color.green)
+                        .overlay(Circle().stroke(Color.black,lineWidth: 4))
                     
-                }//VStack Ends
+                    Text("🤪")
+                        .font(.system(size: 40))
+                        
+                        
+                }//ZStack Ends
+                  
+                    .padding(.vertical, 200)
                     
                 VStack {
+                    Spacer().frame(height: 50)
+                    
+                    Text("Allowance")
+                        .font(.largeTitle)
+                        .foregroundColor(Color.blue)
+                }
+                
+                
+                
+                
+                VStack {
+                    
+        
                     //Call Menu
                     Menu()
-                    
+                
                     } //Menu ZStack Ends
-                    .padding(.horizontal, 125)
+                    
                 
             } //End ZStack Image
-    
+            
                 
             .navigationBarTitle(Text("Home 🏠"))
+    
         
         } //End Navigation End
+       
         
         
     }

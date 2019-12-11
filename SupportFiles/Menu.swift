@@ -56,8 +56,11 @@ struct Menu: View {
                         EmptyView()
                     }
                 }
+                
+                
             } //End of Weekly
             
+        
             
             
             if showMenuMonthly {
@@ -304,8 +307,17 @@ struct kidAllowance: View {
         
         NavigationView {
             
-        
-            VStack (alignment: .leading, spacing: 20) {
+            
+            ZStack {
+                
+                Image("Other_VCBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .padding(.vertical, -150)
+                
+                    
+    
+            VStack {
             
                 VStack {
                         Text("Enter Child Details")
@@ -317,6 +329,7 @@ struct kidAllowance: View {
                 
                         TextField("Enter your firstname",text: $firstName)
                             .border(Color.gray, width: 0.2)
+                        
                 
                         TextField("Enter your lastname",text: $lastName)
                             .border(Color.gray, width: 0.2)
@@ -325,11 +338,14 @@ struct kidAllowance: View {
                         TextField("Enter your age",text: $personalDetails.age)
                             .border(Color.gray, width: 0.2)
                         
-                        Spacer().frame(height: 10)
+                        Spacer().frame(height: 40)
+                        
+             
                         
                         Text("Allowance Details")
                             .foregroundColor(Color.blue)
                             .font(.system(size: 20))
+                
             
             
                         Text("You name is \(firstName) \(lastName)")
@@ -345,23 +361,64 @@ struct kidAllowance: View {
                 }
                         
                         
-                        Spacer().frame(height: 400) //Push text to top of screen
+                        Spacer().frame(height: 450) //Push text to top of screen
         
                 
-             
-                    
+                } //End of VStack
                 
-                }
-                
-               
                 .font(.system(size: 14))
                 .autocapitalization(.words)
-                .padding()
+                .padding(.horizontal, 200)
+                
+                
+                
+            
+                ZStack {
+                    
+                    
+                    Capsule()
+                    .foregroundColor(Color.blue)
+                    .frame(width: 140, height: 20)
+                    .overlay(Capsule().stroke(Color.black,lineWidth: 2))
+                    
+                    
+                    Rectangle()
+                        .foregroundColor(Color.red)
+                        .frame(width: 100, height: 100)
+                        .overlay(Rectangle().stroke(Color.black,lineWidth: 2))
+                    
+                    
+                    
+                    Circle()
+                        .foregroundColor(Color.green)
+                        .frame(width: 80, height: 80)
+                        .overlay(Circle().stroke(Color.black,lineWidth: 2))
+                    
+                    Text("🏧")
+                        .font(.system(size: 40))
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                }
+                
+                
+                
+            }
+          
+               
+               
+            
+            
         
         }.navigationBarTitle(Text("Weekly Allowance"), displayMode: .inline)
         
-    }
     
+    }
 }
     
     
@@ -420,38 +477,142 @@ struct kidAllowance: View {
             
         }//End Calculation
         
+        var emojiFace: String {
+            
+            var theEmoji = ""
+            var myConvertAge = 0
+            myConvertAge = Int(self.personalDetails.age) ?? 0
+            
+            if myConvertAge > 0 && myConvertAge <= 5{
+                theEmoji = "🥺"
+            } else if myConvertAge > 5 && myConvertAge < 10 {
+                theEmoji = "😕"
+            } else if myConvertAge >= 10 {
+                theEmoji = "🤪"
+            }
+            
+            return theEmoji
+        }
+        
         
         var body: some View {
             
             
-             VStack {
-                       
-                    TextField("Enter your firstname",text: $firstName)
-                    TextField("Enter your lastname",text: $lastName)
-                    TextField("Enter your age",text: $personalDetails.age)
-                           
-                       
-                       
-                    Text("You name is \(firstName) \(lastName)")
-                    Text("This is a \(updateMthlyAllowance) allowance")
-                       
-               
-                    Text("Age \(self.personalDetails.age)")
-                       
-               
-                    Text("\(calculateMthlyAllowance,specifier: "%.2f")")
-                       
+            NavigationView {
+                         
+                         
+                         ZStack {
+                             
+                             Image("Other_VCBackground")
+                                 .resizable()
+                                 .scaledToFill()
+                                 .padding(.vertical, -150)
+                             
+                                 
+                 
+                         VStack {
+                         
+                             VStack {
+                                     Text("Enter Child Details")
+                                         .foregroundColor(Color.blue)
+                                         .font(.system(size: 20))
+                                     
+                                 
+                             }
+                             
+                                     TextField("Enter your firstname",text: $firstName)
+                                         .border(Color.gray, width: 0.2)
+                                     
+                             
+                                     TextField("Enter your lastname",text: $lastName)
+                                         .border(Color.gray, width: 0.2)
 
-                   }
-                   
-                   .font(.system(size: 14))
-                   .autocapitalization(.words)
-                   .padding()
-            
-            
-            
-        }
-    }
+                                 
+                                     TextField("Enter your age",text: $personalDetails.age)
+                                         .border(Color.gray, width: 0.2)
+                                     
+                                     Spacer().frame(height: 40)
+                                     
+                          
+                                     
+                                     Text("Allowance Details")
+                                         .foregroundColor(Color.blue)
+                                         .font(.system(size: 20))
+                             
+                         
+                         
+                                     Text("You name is \(firstName) \(lastName)")
+                 
+                                     Text("Age \(self.personalDetails.age)")
+                             
+                             HStack {
+                         
+                                     Text("Your \(updateMthlyAllowance) allowance is £\(calculateMthlyAllowance,specifier: "%.2f")")
+                                     Text("\(emojiFace)")
+                                         .font(.system(size: 40))
+                         
+                             }
+                                     
+                                     
+                                     Spacer().frame(height: 450) //Push text to top of screen
+                     
+                             
+                             } //End of VStack
+                             
+                             .font(.system(size: 14))
+                             .autocapitalization(.words)
+                             .padding(.horizontal, 200)
+                             
+                             
+                             
+                         
+                             ZStack {
+                                 
+                                 
+                                 Capsule()
+                                 .foregroundColor(Color.blue)
+                                 .frame(width: 140, height: 20)
+                                 .overlay(Capsule().stroke(Color.black,lineWidth: 2))
+                                 
+                                 
+                                 Rectangle()
+                                     .foregroundColor(Color.red)
+                                     .frame(width: 100, height: 100)
+                                     .overlay(Rectangle().stroke(Color.black,lineWidth: 2))
+                                 
+                                 
+                                 
+                                 Circle()
+                                     .foregroundColor(Color.green)
+                                     .frame(width: 80, height: 80)
+                                     .overlay(Circle().stroke(Color.black,lineWidth: 2))
+                                 
+                                 Text("🏧")
+                                     .font(.system(size: 40))
+                                 
+                                 
+                                     
+                                 
+                                     
+                                 
+                                     
+                                 
+                             }
+                             
+                             
+                             
+                         }
+                       
+                            
+                            
+                         
+                         
+                     
+                     }.navigationBarTitle(Text("Monthly Allowance"), displayMode: .inline)
+                     
+                 
+                 }
+             }
     
 
 struct kidYearlyAllowance:  View {
@@ -509,53 +670,143 @@ struct kidYearlyAllowance:  View {
     }//End Calculation
     
     
+    var emojiFace: String {
+        
+        var theEmoji = ""
+        var myConvertAge = 0
+        myConvertAge = Int(self.personalDetails.age) ?? 0
+        
+        if myConvertAge > 0 && myConvertAge <= 5{
+            theEmoji = "🥺"
+        } else if myConvertAge > 5 && myConvertAge < 10 {
+            theEmoji = "😕"
+        } else if myConvertAge >= 10 {
+            theEmoji = "🤪"
+        }
+        
+        return theEmoji
+    }
+    
+    
     var body: some View {
         
-         VStack {
-                              
-            TextField("Enter your firstname",text: $firstName)
-            TextField("Enter your lastname",text: $lastName)
-            TextField("Enter your age",text: $personalDetails.age)
-                                  
-                              
-                              
-            Text("You name is \(firstName) \(lastName)")
-            Text("This is a \(updateYrlyAllowance) allowance")
-                              
-                      
-            Text("Age \(self.personalDetails.age)")
-                              
-                      
-            Text("\(calculateYrlyAllowance,specifier: "%.2f")")
-            //Spacer().frame(height: 20)
-            
-            VStack {
-            
-            if calculateYrlyAllowance <= 5.0 {
-                Text("🥺")
-                    .font(.system(size: 10))
-                
-            } else if calculateYrlyAllowance >= 7.5 {
-                Text("😕")
-                    .font(.system(size: 10))
-            
-            } else if calculateYrlyAllowance >= 10.0 {
-                Text("🤪")
-                    .font(.system(size: 10))
-                
-            }
-                
-            }
+         NavigationView {
+                                 
+                                 
+                                 ZStack {
+                                     
+                                     Image("Other_VCBackground")
+                                         .resizable()
+                                         .scaledToFill()
+                                         .padding(.vertical, -150)
+                                     
+                                         
+                         
+                                 VStack {
+                                 
+                                     VStack {
+                                             Text("Enter Child Details")
+                                                 .foregroundColor(Color.blue)
+                                                 .font(.system(size: 20))
+                                             
+                                         
+                                     }
+                                     
+                                             TextField("Enter your firstname",text: $firstName)
+                                                 .border(Color.gray, width: 0.2)
+                                             
+                                     
+                                             TextField("Enter your lastname",text: $lastName)
+                                                 .border(Color.gray, width: 0.2)
 
-        }
+                                         
+                                             TextField("Enter your age",text: $personalDetails.age)
+                                                 .border(Color.gray, width: 0.2)
+                                             
+                                             Spacer().frame(height: 40)
+                                             
+                                  
+                                             
+                                             Text("Allowance Details")
+                                                 .foregroundColor(Color.blue)
+                                                 .font(.system(size: 20))
+                                     
+                                 
+                                 
+                                             Text("You name is \(firstName) \(lastName)")
+                         
+                                             Text("Age \(self.personalDetails.age)")
+                                     
+                                     HStack {
+                                 
+                                             Text("Your \(updateYrlyAllowance) allowance is £\(calculateYrlyAllowance,specifier: "%.2f")")
+                                             Text("\(emojiFace)")
+                                                 .font(.system(size: 40))
+                                 
+                                     }
+                                             
+                                             
+                                             Spacer().frame(height: 450) //Push text to top of screen
+                             
+                                     
+                                     } //End of VStack
+                                     
+                                     .font(.system(size: 14))
+                                     .autocapitalization(.words)
+                                     .padding(.horizontal, 200)
+                                     
+                                     
+                                     
+                                 
+                                     ZStack {
+                                         
+                                         
+                                         Capsule()
+                                         .foregroundColor(Color.blue)
+                                         .frame(width: 140, height: 20)
+                                         .overlay(Capsule().stroke(Color.black,lineWidth: 2))
+                                         
+                                         
+                                         Rectangle()
+                                             .foregroundColor(Color.red)
+                                             .frame(width: 100, height: 100)
+                                             .overlay(Rectangle().stroke(Color.black,lineWidth: 2))
+                                         
+                                         
+                                         
+                                         Circle()
+                                             .foregroundColor(Color.green)
+                                             .frame(width: 80, height: 80)
+                                             .overlay(Circle().stroke(Color.black,lineWidth: 2))
+                                         
+                                         Text("🏧")
+                                             .font(.system(size: 40))
+                                         
+                                         
+                                             
+                                         
+                                             
+                                         
+                                             
+                                         
+                                     }
+                                     
+                                     
+                                     
+                                 }
+                               
+                                    
+                                    
+                                 
+                                 
+                             
+                             }.navigationBarTitle(Text("Yearly Allowance"), displayMode: .inline)
+                             
+                         
+                         }
+                     }
                           
-        .font(.system(size: 14))
-        .autocapitalization(.words)
-        .padding()
-        
-        
-    }
-}
+
     
     
     

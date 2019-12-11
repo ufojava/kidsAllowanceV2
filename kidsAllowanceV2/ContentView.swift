@@ -63,7 +63,7 @@ struct ContentView: View {
                 VStack {
                     Spacer().frame(height: 50)
                     
-                    Text("Allowance")
+                    Text("Kiddy Payroll")
                         .font(.largeTitle)
                         .foregroundColor(Color.blue)
                 }
